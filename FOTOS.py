@@ -3,11 +3,11 @@ import shutil
 from datetime import datetime
 
 # Directorio de origen y destino
-source_dir = 'G:\My Drive\FOTOS CAMARA HASTA EL 14.08.19'
-destination_dir = 'G:\My Drive\MEDIA'
+source_dir = 'ruta/a/tu/directorio/de/fotos'
+destination_dir = 'ruta/a/tu/directorio/ordenado'
 
 # Número máximo de archivos a procesar
-max_files_to_process = 1  # Cambia este valor según tus necesidades
+max_files_to_process = 100  # Cambia este valor según tus necesidades
 
 # Crear el directorio de destino si no existe
 if not os.path.exists(destination_dir):
@@ -32,12 +32,11 @@ for root, dirs, files in os.walk(source_dir):
         creation_date = datetime.fromtimestamp(creation_time)
         
         # Crear la estructura de carpetas
-        year_folder = creation_date.strftime('%Y')
-        month_folder = creation_date.strftime('%Y%m')
-        day_folder = creation_date.strftime('%Y%m%d')
+        year_folder = creation_date.strftime('%Y') + '.' + file_extension
+        month_folder = creation_date.strftime('%Y%m') + '.' + file_extension
         
         # Ruta completa de la carpeta de destino
-        destination_path = os.path.join(destination_dir, file_extension, year_folder, month_folder, day_folder)
+        destination_path = os.path.join(destination_dir, file_extension, year_folder, month_folder)
         
         # Crear la carpeta de destino si no existe
         if not os.path.exists(destination_path):
